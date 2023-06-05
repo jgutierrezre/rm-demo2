@@ -21,13 +21,20 @@ Shader "Oculus/Interaction/Room"
 			_ColorLight("Light Color", Color) = (1, 1, 1, 1)
 			_ColorDark("Dark Color", Color) = (0, 0, 0, 1)
 			_DitherStrength("Dither Strength", int) = 16
+			[IntRange] _StencilRef("Stencil Reference Value", Range(0, 255)) = 0
 
 			[HideInInspector] _texcoord("", 2D) = "white" {}
 		}
 
 		SubShader
 		{
-			Tags{ "RenderType" = "Opaque"  "Queue" = "Geometry+0"}
+
+			Stencil{
+				Ref[_StencilRef]
+				Comp Equal
+			}
+
+			Tags{ "RenderType" = "Opaque"  "Queue" = "Geometry+502"}
 			LOD 100
 
 			CGINCLUDE

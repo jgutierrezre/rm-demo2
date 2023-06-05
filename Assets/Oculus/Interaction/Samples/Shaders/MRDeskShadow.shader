@@ -16,13 +16,20 @@ Shader "Oculus/Interaction/deskShadow"
 		{
 			_MainTex("MainTex", 2D) = "white" {}
 			_Color("Shadow Color", Color) = (0, 0, 0, 0)
+			[IntRange] _StencilRef("Stencil Reference Value", Range(0, 255)) = 0
 
 			[HideInInspector] _texcoord("", 2D) = "white" {}
 		}
 
 		SubShader
 		{
-			Tags{ "RenderType" = "Transparent"  "Queue" = "Transparent+0"}
+
+			Stencil{
+				Ref[_StencilRef]
+				Comp Equal
+			}
+
+			Tags{ "RenderType" = "Transparent"  "Queue" = "Transparent+502"}
 			LOD 100
 
 			CGINCLUDE

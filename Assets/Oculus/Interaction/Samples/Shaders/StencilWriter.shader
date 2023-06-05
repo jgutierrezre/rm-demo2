@@ -15,6 +15,7 @@ Shader "Oculus/Interaction/StencilWriter"
 	Properties
 	{
 		[IntRange] _StencilRef("Stencil Reference Value", Range(0,255)) = 0
+		[IntRange] _StencilRef2("Stencil Reference Value 2", Range(0,255)) = 0
 	}
 
 	SubShader{

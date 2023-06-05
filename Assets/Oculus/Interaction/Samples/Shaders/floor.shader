@@ -20,13 +20,20 @@ Shader "Oculus/Interaction/floor"
 			_DetailTex("Detail Texture", 2D) = "white" {}
             _DetailTexIntensity("Detail Texture Intensity", Range(0, 1)) = 1
 			_DitherStrength("Dither Strength", int) = 16
+			[IntRange] _StencilRef("Stencil Reference Value", Range(0, 255)) = 0
 
 			[HideInInspector] _texcoord("", 2D) = "white" {}
 		}
 
 		SubShader
 		{
-			Tags{ "RenderType" = "Transparent"  "Queue" = "Transparent+0"}
+
+			Stencil{
+				Ref[_StencilRef]
+				Comp Equal
+			}
+
+			Tags{ "RenderType" = "Transparent"  "Queue" = "Transparent+502"}
 			LOD 100
 
 			CGINCLUDE
